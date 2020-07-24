@@ -54,6 +54,11 @@ If the **Atlas** is deployed:
 psql -d georchestra -f postgresql/060-atlas.sql
 ```
 
+## GeoWebCache schema
+
+If geowebcache is used it creates a geowebcache schema to store quota and relevant infos to
+geowebcache. This setup is highly encouraged in a production environment to replace local H2 database.
+
 ## Change ownership of database objects
 
 Ensure geOrchestra database user is owner of database. If your database is dedicated to geOrchestra (no other

@@ -16,4 +16,9 @@ else
 
     echo 'Change log config according to docker setup'
     sed -i 's:stdOutLogging>false:stdOutLogging>true:g' /mnt/geoserver_datadir/logging.xml
+
+    # geowebcache config need to be placed in geoserver_tiles volume.
+    # copying it directly in the Dockerfile doesn't work. Copying it at runtime.
+    echo 'Copying geowebcache config to the right volume'
+    cp /tmp/geowebcache*.xml /mnt/geoserver_tiles/
 fi

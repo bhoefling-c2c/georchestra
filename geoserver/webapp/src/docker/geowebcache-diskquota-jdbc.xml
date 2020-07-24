@@ -1,0 +1,14 @@
+<gwcJdbcConfiguration>
+  <dialect>PostgreSQL</dialect>
+  <JNDISource>jdbc/gwc</JNDISource>
+  <connectionPool>
+    <driver>org.postgresql.Driver</driver>
+    <url>jdbc:postgresql://database/georchestra</url>
+    <username>georchestra</username>
+    <password>georchestra</password>
+    <minConnections>1</minConnections>
+    <maxConnections>10</maxConnections>
+    <connectionTimeout>10000</connectionTimeout>
+    <maxOpenPreparedStatements>50</maxOpenPreparedStatements>
+  </connectionPool>
+</gwcJdbcConfiguration>

@@ -28,10 +28,16 @@ RUN mkdir /mnt/geoserver_datadir /mnt/geoserver_geodata /mnt/geoserver_tiles /mn
 
 # add a tweaked configuration. First use case is support of OPTIONS.
 ADD web.xml /var/lib/jetty/webapps/geoserver/WEB-INF/web.xml
+ADD jetty-env.xml /var/lib/jetty/webapps/geoserver/WEB-INF/jetty-env.xml
+# tweaked geowebcache config that use postgresql instead of H2. Copying it to /tmp since copying it 
+# to /mnt/geoserver_tiles won't work (it's a volume, data will be override). File copied to
+# /mnt/geoserver_tiles by a entrypoint script.
+COPY geowebcache-diskquota.xml geowebcache-diskquota-jdbc.xml /tmp/
 
 USER jetty
 
 VOLUME [ "/mnt/geoserver_datadir", "/mnt/geoserver_geodata", "/mnt/geoserver_tiles", "/mnt/geoserver_native_libs", "/tmp", "/run/jetty" ]
+
 
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
